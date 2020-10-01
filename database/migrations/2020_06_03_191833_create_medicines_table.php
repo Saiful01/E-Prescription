@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateMedicinesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('medicines', function (Blueprint $table) {
+            $table->bigIncrements('medicine_id');
+            $table->string('medicine_name');
+            $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('medicine_company_id');
+            $table->unsignedBigInteger('medicine_group_id');
+            $table->text('medicine_description')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('medicines');
+    }
+}
